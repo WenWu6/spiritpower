@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Unzip build files
+      - name: Unzip full project files
         run: |
-          unzip -o root_files.zip -x "src/*"
+          unzip -o project_full.zip
           ls -la
 
       - uses: actions/setup-java@v4
