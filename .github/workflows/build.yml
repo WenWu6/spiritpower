@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Unzip root files
+        run: |
+          unzip -o root_files.zip
+          ls -la
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
