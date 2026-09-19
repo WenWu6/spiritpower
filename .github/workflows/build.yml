@@ -10,8 +10,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Unzip project files
-        run: unzip project.zip
+      - name: Unzip and fix paths
+        run: |
+          mkdir temp_project
+          unzip -q project.zip -d temp_project
+          # 自动寻找真正的源码目录并移动到根目录
+          if [ -d "temp_project/mdk" ]; then
+            mv temp_project/mdk/* .
+          elif [ -d "temp_project/spiritpower" ]; then
+            mv temp_project/spiritpower/* .
+          else
+            mv temp_project/* .
+          fi
+          rm -rf temp_project
+          ls -la
 
       - uses: actions/setup-java@v4
         with:
